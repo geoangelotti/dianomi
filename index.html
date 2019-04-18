@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/dianomi_0.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[38.0611098561,23.7750200486],[38.1212289355,23.9103729393]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        var bounds_group = new L.featureGroup([]);
+        var basemap0 = L.tileLayer('http://{s}.tile.openstreetmap.de/tiles/osmde/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+            maxZoom: 28
+        });
+        basemap0.addTo(map);
+        function setBounds() {
+        }
+        function pop_dianomi_0(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">id</th>\
+                        <td>' + (feature.properties['id'] !== null ? Autolinker.link(String(feature.properties['id'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">provider</th>\
+                        <td>' + (feature.properties['provider'] !== null ? Autolinker.link(String(feature.properties['provider'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">maxspeed</th>\
+                        <td>' + (feature.properties['maxspeed'] !== null ? Autolinker.link(String(feature.properties['maxspeed'])) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">type</th>\
+                        <td>' + (feature.properties['type'] !== null ? Autolinker.link(String(feature.properties['type'])) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_dianomi_0_0(feature) {
+            switch(String(feature.properties['provider'])) {
+                case 'cosmote':
+                    return {
+                pane: 'pane_dianomi_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 4.0,
+                fillOpacity: 0,
+            }
+                    break;
+                case 'vodafone':
+                    return {
+                pane: 'pane_dianomi_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 4.0,
+                fillOpacity: 0,
+            }
+                    break;
+                case 'wind':
+                    return {
+                pane: 'pane_dianomi_0',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 4.0,
+                fillOpacity: 0,
+            }
+                    break;
+            }
+        }
+        function style_dianomi_0_1(feature) {
+            switch(String(feature.properties['provider'])) {
+                case 'cosmote':
+                    return {
+                pane: 'pane_dianomi_0',
+                opacity: 1,
+                color: 'rgba(56,204,72,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 0,
+            }
+                    break;
+                case 'vodafone':
+                    return {
+                pane: 'pane_dianomi_0',
+                opacity: 1,
+                color: 'rgba(255,50,27,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 0,
+            }
+                    break;
+                case 'wind':
+                    return {
+                pane: 'pane_dianomi_0',
+                opacity: 1,
+                color: 'rgba(21,105,222,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 0,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_dianomi_0');
+        map.getPane('pane_dianomi_0').style.zIndex = 400;
+        map.getPane('pane_dianomi_0').style['mix-blend-mode'] = 'normal';
+        var layer_dianomi_0 = new L.geoJson.multiStyle(json_dianomi_0, {
+            attribution: '<a href=""></a>',
+            pane: 'pane_dianomi_0',
+            onEachFeature: pop_dianomi_0,
+            styles: [style_dianomi_0_0,style_dianomi_0_1,]
+        });
+        bounds_group.addLayer(layer_dianomi_0);
+        map.addLayer(layer_dianomi_0);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'dianomi<br /><table><tr><td style="text-align: center;"><img src="legend/dianomi_0_cosmote0.png" /></td><td>cosmote</td></tr><tr><td style="text-align: center;"><img src="legend/dianomi_0_vodafone1.png" /></td><td>vodafone</td></tr><tr><td style="text-align: center;"><img src="legend/dianomi_0_wind2.png" /></td><td>wind</td></tr></table>': layer_dianomi_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
